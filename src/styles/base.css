@@ -1,0 +1,49 @@
+:root{
+  --bg:#070A12;
+  --text:#EAF0FF;
+  --muted:#A9B3C9;
+  --card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.10);
+
+  --primary:#7C3AED;   /* фиолетовый */
+  --accent:#22D3EE;    /* циан */
+  --lime:#A3E635;      /* лайм */
+}
+
+body[data-theme="light"]{
+  --bg:#F7F8FF;
+  --text:#0B1020;
+  --muted:#556079;
+  --card:rgba(255,255,255,.75);
+  --border:rgba(15,23,42,.12);
+
+  --primary:#6D28D9;
+  --accent:#0891B2;
+  --lime:#65A30D;
+}
+
+*{ box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+/* фон с “бликами” */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  background:
+    radial-gradient(700px 500px at 18% 10%, rgba(124,58,237,.35), transparent 60%),
+    radial-gradient(700px 500px at 80% 18%, rgba(34,211,238,.28), transparent 62%),
+    radial-gradient(900px 700px at 55% 90%, rgba(163,230,53,.18), transparent 70%);
+  filter: blur(10px);
+  z-index:-1;
+  pointer-events:none;
+}

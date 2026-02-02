@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../features/ui/uiSlice";
+import "./Header.css";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -8,14 +9,19 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__inner">
-        <div className="brand">
+        <a className="brand" href="#top" aria-label="На главную">
           <span className="brand__dot" />
           <span className="brand__text">OptimumNutrition</span>
-        </div>
+        </a>
 
-        <nav className="nav">
-          <a href="#products">Товары</a>
+        <nav className="nav" aria-label="Навигация">
+          {/* Эти ссылки ты будешь использовать дальше в разработке */}
+          <a href="#top">Главная</a>
+          <a href="#products">Каталог</a>
+          <a href="#about">О нас</a>
+          <a href="#delivery">Доставка</a>
           <a href="#contact">Контакты</a>
+          <a href="#cart">Корзина</a>
         </nav>
 
         <div className="header__actions">

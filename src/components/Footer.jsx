@@ -1,3 +1,5 @@
+import "./Footer.css";
+
 export default function Footer() {
   return (
     <footer className="footer" id="contact">
@@ -14,9 +16,7 @@ export default function Footer() {
       </div>
 
       <div className="container footer__bottom">
-        <span className="muted">
-          © {new Date().getFullYear()} SportFuel
-        </span>
+        <span className="muted">© {new Date().getFullYear()} SportFuel</span>
       </div>
     </footer>
   );

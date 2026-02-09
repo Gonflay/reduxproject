@@ -1,0 +1,108 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Whey Protein",
+      "desc": "900 г • сывороточный",
+      "price": 2990,
+      "currency": "сом",
+      "rating": 4.8,
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1622484211148-16a7dd567c90?auto=format&fit=crop&w=800&q=60",
+      "details": {
+        "brand": "Optimum Nutrition",
+        "flavor": "Vanilla",
+        "servings": 30,
+        "benefits": ["Рост мышц", "Восстановление", "Удобный белок"]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Creatine Mono",
+      "desc": "300 г • моногидрат",
+      "price": 1490,
+      "currency": "сом",
+      "rating": 4.7,
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1615486364462-ef6363ad8810?auto=format&fit=crop&w=800&q=60",
+      "details": {
+        "brand": "SportFuel",
+        "flavor": "Без вкуса",
+        "servings": 60,
+        "benefits": ["Сила", "Выносливость", "Памп"]
+      }
+    },
+    {
+      "id": 3,
+      "name": "BCAA 2:1:1",
+      "desc": "400 г • аминокислоты",
+      "price": 1790,
+      "currency": "сом",
+      "rating": 4.6,
+      "inStock": false,
+      "image": "https://images.unsplash.com/photo-1615485737450-4a19a9b0c1b8?auto=format&fit=crop&w=800&q=60",
+      "details": {
+        "brand": "SportFuel",
+        "flavor": "Berry",
+        "servings": 40,
+        "benefits": ["Восстановление", "Антикатаболик", "Выносливость"]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Mass Gainer",
+      "desc": "3 кг • набор массы",
+      "price": 2490,
+      "currency": "сом",
+      "rating": 4.4,
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1615486364313-1d0adf7eecca?auto=format&fit=crop&w=800&q=60",
+      "details": {
+        "brand": "Optimum Nutrition",
+        "flavor": "Chocolate",
+        "servings": 20,
+        "benefits": ["Калории", "Масса", "Углеводы+белок"]
+      }
+    }
+  ],
+  "posts": [
+    {
+      "id": 101,
+      "title": "Как выбрать протеин под цель?",
+      "excerpt": "Разница сывороточного, казеина и изолята — простыми словами.",
+      "tag": "гайд"
+    },
+    {
+      "id": 102,
+      "title": "Креатин: мифы и правда",
+      "excerpt": "Когда пить, сколько грамм и почему он реально работает.",
+      "tag": "наука"
+    },
+    {
+      "id": 103,
+      "title": "BCAA нужны или нет?",
+      "excerpt": "Кому полезно, а кому можно сэкономить и взять протеин.",
+      "tag": "разбор"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 201,
+      "name": "Азамат",
+      "text": "Заказал протеин — пришло быстро, вкус топ.",
+      "stars": 5
+    },
+    {
+      "id": 202,
+      "name": "Айжан",
+      "text": "Креатин оригинал, цена адекватная. Буду брать ещё.",
+      "stars": 5
+    },
+    {
+      "id": 203,
+      "name": "Данияр",
+      "text": "Упаковка норм, поддержка отвечает. Рекомендую.",
+      "stars": 4
+    }
+  ]
+}

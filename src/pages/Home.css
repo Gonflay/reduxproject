@@ -104,3 +104,24 @@
 .hero__card--hidden{
   display: none;
 }
+
+.crudForm{
+  display:grid;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.crudInput,
+.crudTextarea{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+}
+
+.crudItemActions{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}

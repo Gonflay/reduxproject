@@ -8,13 +8,32 @@ export const loadData = createAsyncThunk("data/loadData", async () => {
 const dataSlice = createSlice({
   name: "data",
   initialState: {
-    status: "idle", // idle | loading | succeeded | failed
+    status: "idle",
     error: null,
     products: [],
     posts: [],
-    testimonials: []
+    testimonials: [],
   },
-  reducers: {},
+  reducers: {
+    // CREATE
+    addPost(state, action) {
+      const newPost = action.payload;
+      state.posts.unshift(newPost);
+    },
+    // UPDATE
+    updatePost(state, action) {
+      const { id, patch } = action.payload;
+      const idx = state.posts.findIndex((p) => p.id === id);
+      if (idx !== -1) {
+        state.posts[idx] = { ...state.posts[idx], ...patch };
+      }
+    },
+    // DELETE
+    deletePost(state, action) {
+      const id = action.payload;
+      state.posts = state.posts.filter((p) => p.id !== id);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadData.pending, (state) => {
@@ -31,7 +50,8 @@ const dataSlice = createSlice({
         state.status = "failed";
         state.error = action.error?.message || "Ошибка загрузки";
       });
-  }
+  },
 });
 
+export const { addPost, updatePost, deletePost } = dataSlice.actions;
 export default dataSlice.reducer;

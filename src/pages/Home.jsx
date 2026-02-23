@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadData } from "../features/data/dataSlice";
+import {
+  loadData,
+  addPost,
+  updatePost,
+  deletePost
+} from "../features/data/dataSlice";
 import "./Home.css";
 
 export default function Home() {
@@ -9,16 +14,57 @@ export default function Home() {
     (s) => s.data
   );
 
+  /* ---------- PRODUCT DETAIL ---------- */
   const [selectedId, setSelectedId] = useState(null);
-
-  useEffect(() => {
-    if (status === "idle") dispatch(loadData());
-  }, [status, dispatch]);
 
   const selectedProduct = useMemo(
     () => products.find((p) => p.id === selectedId),
     [products, selectedId]
   );
+
+  /* ---------- CRUD STATE (POSTS) ---------- */
+  const [form, setForm] = useState({
+    title: "",
+    excerpt: "",
+    tag: "гайд"
+  });
+  const [editId, setEditId] = useState(null);
+
+  useEffect(() => {
+    if (status === "idle") dispatch(loadData());
+  }, [status, dispatch]);
+
+  const submitPost = () => {
+    if (!form.title.trim() || !form.excerpt.trim()) return;
+
+    if (editId) {
+      dispatch(
+        updatePost({
+          id: editId,
+          patch: form
+        })
+      );
+    } else {
+      dispatch(
+        addPost({
+          id: Date.now(),
+          ...form
+        })
+      );
+    }
+
+    setForm({ title: "", excerpt: "", tag: "гайд" });
+    setEditId(null);
+  };
+
+  const startEdit = (post) => {
+    setEditId(post.id);
+    setForm({
+      title: post.title,
+      excerpt: post.excerpt,
+      tag: post.tag
+    });
+  };
 
   return (
     <div className="home" id="top">
@@ -30,8 +76,7 @@ export default function Home() {
             <h1 className="title">
               Спортпит <span className="accent">для результата</span>
             </h1>
-            <p className="subtitle">
-            </p>
+            <p className="subtitle"></p>
 
             <div className="hero__actions">
               <a className="btn btn--primary" href="#products">
@@ -43,16 +88,15 @@ export default function Home() {
             </div>
           </div>
 
-        <div className="hero__card hero__card--hidden">
-      <h3>Что сделано по заданию</h3>
-      <ul>
-      <li>✔ Только JSON, без локальных массивов</li>
-      <li>✔ Имитация задержки</li>
-      <li>✔ Несколько контентов</li>
-      <li>✔ LIST / DETAIL</li>
-  </ul>
-</div>
-
+          {/* учебный блок скрыт */}
+          <div className="hero__card hero__card--hidden">
+            <h3>Что сделано по заданию</h3>
+            <ul>
+              <li>✔ JSON</li>
+              <li>✔ LIST / DETAIL</li>
+              <li>✔ CRUD</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -60,7 +104,7 @@ export default function Home() {
       {status === "loading" && (
         <section className="section">
           <div className="container">
-            <div className="note">Загрузка данных… (имитация сервера)</div>
+            <div className="note">Загрузка данных…</div>
           </div>
         </section>
       )}
@@ -69,9 +113,6 @@ export default function Home() {
         <section className="section">
           <div className="container">
             <div className="note">Ошибка: {error}</div>
-            <button className="btn btn--primary" onClick={() => dispatch(loadData())}>
-              Попробовать снова
-            </button>
           </div>
         </section>
       )}
@@ -119,16 +160,21 @@ export default function Home() {
 
               {!selectedProduct ? (
                 <p className="note">
-                  Нажми <b>“Подробнее”</b> на любом товаре, чтобы открыть детали.
+                  Нажми <b>«Подробнее»</b> на товаре
                 </p>
               ) : (
                 <div className="detail">
                   <div className="detail__media">
-                    <img src={selectedProduct.image} alt={selectedProduct.name} />
+                    <img
+                      src={selectedProduct.image}
+                      alt={selectedProduct.name}
+                    />
                   </div>
 
                   <div className="detail__info">
-                    <h3 className="detail__title">{selectedProduct.name}</h3>
+                    <h3 className="detail__title">
+                      {selectedProduct.name}
+                    </h3>
                     <p className="note">{selectedProduct.desc}</p>
 
                     <div className="detail__row">
@@ -154,12 +200,12 @@ export default function Home() {
                     </div>
 
                     <div className="detail__actions">
-                      <button className="btn btn--ghost" onClick={() => setSelectedId(null)}>
-                        Назад к списку
+                      <button
+                        className="btn btn--ghost"
+                        onClick={() => setSelectedId(null)}
+                      >
+                        Назад
                       </button>
-                      <a className="btn btn--primary" href="#products">
-                        К каталогу
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -167,23 +213,77 @@ export default function Home() {
             </div>
           </section>
 
-          {/* EXTRA CONTENTS */}
+          {/* CONTENT + CRUD */}
           <section className="section" id="content">
             <div className="container">
               <h2 className="h2">Контент</h2>
 
               <div className="contentGrid">
+                {/* POSTS CRUD */}
                 <div className="contentBox">
                   <h3>Мини-статьи</h3>
+
+                  <div className="crudForm">
+                    <input
+                      className="crudInput"
+                      placeholder="Заголовок"
+                      value={form.title}
+                      onChange={(e) =>
+                        setForm({ ...form, title: e.target.value })
+                      }
+                    />
+                    <input
+                      className="crudInput"
+                      placeholder="Тег"
+                      value={form.tag}
+                      onChange={(e) =>
+                        setForm({ ...form, tag: e.target.value })
+                      }
+                    />
+                    <textarea
+                      className="crudTextarea"
+                      rows={3}
+                      placeholder="Описание"
+                      value={form.excerpt}
+                      onChange={(e) =>
+                        setForm({ ...form, excerpt: e.target.value })
+                      }
+                    />
+                    <button
+                      className="btn btn--primary"
+                      onClick={submitPost}
+                    >
+                      {editId ? "Сохранить" : "Добавить"}
+                    </button>
+                  </div>
+
                   {posts.map((post) => (
                     <div key={post.id} className="contentItem">
                       <div className="contentTag">{post.tag}</div>
                       <div className="contentTitle">{post.title}</div>
                       <div className="muted">{post.excerpt}</div>
+
+                      <div className="crudItemActions">
+                        <button
+                          className="btn btn--ghost"
+                          onClick={() => startEdit(post)}
+                        >
+                          Редактировать
+                        </button>
+                        <button
+                          className="btn btn--ghost"
+                          onClick={() =>
+                            dispatch(deletePost(post.id))
+                          }
+                        >
+                          Удалить
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
 
+                {/* TESTIMONIALS */}
                 <div className="contentBox">
                   <h3>Отзывы</h3>
                   {testimonials.map((t) => (

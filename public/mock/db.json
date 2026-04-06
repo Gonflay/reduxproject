@@ -8,7 +8,7 @@
       "currency": "сом",
       "rating": 4.8,
       "inStock": true,
-      "image": "https://images.unsplash.com/photo-1622484211148-16a7dd567c90?auto=format&fit=crop&w=800&q=60",
+      "image": "/images/whey.png",
       "details": {
         "brand": "Optimum Nutrition",
         "flavor": "Vanilla",
@@ -24,7 +24,7 @@
       "currency": "сом",
       "rating": 4.7,
       "inStock": true,
-      "image": "https://images.unsplash.com/photo-1615486364462-ef6363ad8810?auto=format&fit=crop&w=800&q=60",
+      "image": "/images/creatine.png",
       "details": {
         "brand": "SportFuel",
         "flavor": "Без вкуса",
@@ -40,7 +40,7 @@
       "currency": "сом",
       "rating": 4.6,
       "inStock": false,
-      "image": "https://images.unsplash.com/photo-1615485737450-4a19a9b0c1b8?auto=format&fit=crop&w=800&q=60",
+      "image": "/images/bcaa.png",
       "details": {
         "brand": "SportFuel",
         "flavor": "Berry",
@@ -56,7 +56,7 @@
       "currency": "сом",
       "rating": 4.4,
       "inStock": true,
-      "image": "https://images.unsplash.com/photo-1615486364313-1d0adf7eecca?auto=format&fit=crop&w=800&q=60",
+      "image": "/images/gainer.png",
       "details": {
         "brand": "Optimum Nutrition",
         "flavor": "Chocolate",

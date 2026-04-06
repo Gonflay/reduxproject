@@ -1,0 +1,351 @@
+.todo-page {
+  padding: 32px 0 60px;
+}
+
+.todo-header {
+  margin-bottom: 32px;
+}
+
+.todo-sub {
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+/* LAYOUT */
+.todo-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 780px) {
+  .todo-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ФОРМА */
+.todo-form-box {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 22px;
+  padding: 22px;
+  position: sticky;
+  top: 90px;
+  backdrop-filter: blur(14px);
+}
+
+.todo-form-title {
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.todo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.todo-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.todo-input {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.todo-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ПРИОРИТЕТ КНОПКИ */
+.todo-priority-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-priority-btn {
+  flex: 1;
+  padding: 7px 4px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.todo-priority-btn.active {
+  border-color: var(--p-color);
+  color: var(--p-color);
+  background: color-mix(in srgb, var(--p-color) 12%, transparent);
+}
+
+.todo-submit {
+  width: 100%;
+  padding: 11px;
+}
+
+/* ПРОГРЕСС */
+.todo-progress {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.todo-progress__top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.todo-progress__bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.todo-progress__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* ФИЛЬТРЫ */
+.todo-list-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.todo-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.todo-filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.todo-filter-count {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.todo-filter-btn:not(.active) .todo-filter-count {
+  background: var(--border);
+  color: var(--muted);
+}
+
+/* ПУСТО */
+.todo-empty {
+  text-align: center;
+  padding: 48px 0;
+  border: 1px dashed var(--border);
+  border-radius: 20px;
+}
+
+.todo-empty__icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: var(--border);
+}
+
+/* КАРТОЧКА */
+.todo-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.2s;
+  backdrop-filter: blur(14px);
+}
+
+.todo-card:hover {
+  border-color: var(--primary);
+}
+
+.todo-card--open {
+  border-color: var(--primary);
+  box-shadow: 0 4px 16px rgba(32, 146, 22, 0.1);
+}
+
+.todo-card--done {
+  opacity: 0.55;
+}
+
+.todo-card__main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+}
+
+/* ЧЕКБОКС */
+.todo-check-wrap {
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-check-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.todo-check-box {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 7px;
+  transition: 0.2s;
+  background: transparent;
+}
+
+.todo-check-input:checked + .todo-check-box {
+  background: var(--primary);
+  border-color: var(--primary);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
+
+/* КОНТЕНТ */
+.todo-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-card__title {
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.todo-card--done .todo-card__title {
+  text-decoration: line-through;
+}
+
+.todo-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.todo-card__priority {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* КНОПКИ ИКОНКИ */
+.todo-card__btns {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.todo-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.18s;
+}
+
+.todo-icon-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(32, 146, 22, 0.08);
+}
+
+.todo-icon-btn--del:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* DETAIL */
+.todo-card__detail {
+  border-top: 1px solid var(--border);
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 560px) {
+  .todo-card__detail {
+    grid-template-columns: 1fr;
+  }
+}
+
+.todo-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

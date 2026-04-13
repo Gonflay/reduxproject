@@ -3,12 +3,13 @@
   top:0;
   z-index:10;
   border-bottom:1px solid var(--border);
-  background: rgba(10,12,20,.35);
-  backdrop-filter: blur(14px);
+  background:rgba(232,244,240,.72);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
 }
 
-body[data-theme="light"] .header{
-  background: rgba(255,255,255,.65);
+body[data-theme="dark"] .header{
+  background:rgba(0,30,46,.72);
 }
 
 .header__inner{
@@ -33,8 +34,8 @@ body[data-theme="light"] .header{
   width:12px;
   height:12px;
   border-radius:999px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  box-shadow: 0 0 0 6px rgba(124,58,237,.10);
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow:0 0 0 5px rgba(0,63,92,.12);
 }
 
 .brand__text{
@@ -43,34 +44,80 @@ body[data-theme="light"] .header{
 
 .nav{
   display:flex;
-  gap:10px;
+  gap:4px;
   flex-wrap:wrap;
   justify-content:center;
-  padding:6px;
+  padding:5px;
   border:1px solid var(--border);
   border-radius:999px;
-  background: rgba(255,255,255,.03);
+  background:rgba(168,216,200,.08);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 
 .nav a{
   text-decoration:none;
   color:var(--muted);
-  font-weight:900;
-  padding:8px 12px;
+  font-weight:800;
+  padding:7px 14px;
   border-radius:999px;
-  transition:.16s ease;
+  transition:.18s ease;
+  font-size:14px;
 }
 
 .nav a:hover{
-  color:var(--text);
-  background: rgba(255,255,255,.07);
+  color:var(--primary);
+  background:rgba(0,63,92,.08);
+}
+
+.nav a.active{
+  color:var(--primary);
+  background:rgba(0,63,92,.10);
+  font-weight:900;
+}
+
+body[data-theme="dark"] .nav a.active{
+  background:rgba(168,216,200,.12);
+  color:var(--primary);
 }
 
 .header__actions{
   display:flex;
+  align-items:center;
   gap:10px;
+}
+
+.header__user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(168,216,200,.08);
+  backdrop-filter:blur(10px);
+}
+
+.header__avatar{
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  color:#E8F4F0;
+  font-size:12px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.header__username{
+  font-size:13px;
+  font-weight:700;
+  color:var(--text);
 }
 
 @media (max-width:780px){
   .nav{ display:none; }
+  .header__username{ display:none; }
 }

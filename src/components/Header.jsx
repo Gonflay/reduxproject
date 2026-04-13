@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toggleTheme } from "../features/ui/uiSlice";
 import { logout } from "../features/auth/authSlice";
 import "./Header.css";
@@ -7,6 +7,7 @@ import "./Header.css";
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useSelector((state) => state.ui.theme);
   const { isAuthenticated, user } = useSelector((s) => s.auth);
 
@@ -14,6 +15,14 @@ export default function Header() {
     dispatch(logout());
     navigate("/auth");
   };
+
+  const navLinks = [
+    { to: "/",            label: "Главная" },
+    { to: "/products",    label: "Каталог" },
+    { to: "/posts",       label: "Статьи" },
+    { to: "/testimonials",label: "Отзывы" },
+    { to: "/todo",        label: "Todo" },
+  ];
 
   return (
     <header className="header">
@@ -24,11 +33,15 @@ export default function Header() {
         </Link>
 
         <nav className="nav" aria-label="Навигация">
-          <Link to="/">Главная</Link>
-          <Link to="/products">Каталог</Link>
-          <Link to="/posts">Статьи</Link>
-          <Link to="/testimonials">Отзывы</Link>
-          <Link to="/todo">Todo</Link>
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={location.pathname === link.to ? "active" : ""}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="header__actions">
@@ -37,17 +50,17 @@ export default function Header() {
             onClick={() => dispatch(toggleTheme())}
             title="Сменить тему"
           >
-            {theme === "light" ? "🌙" : "☀️"}
+            {theme === "dark" ? "☀️" : "🌙"}
           </button>
 
           {isAuthenticated ? (
             <>
-              <span
-                className="muted"
-                style={{ alignSelf: "center", fontSize: 14 }}
-              >
-                {user?.username}
-              </span>
+              <div className="header__user">
+                <div className="header__avatar">
+                  {user?.username?.charAt(0).toUpperCase()}
+                </div>
+                <span className="header__username">{user?.username}</span>
+              </div>
               <button className="btn btn--ghost" onClick={handleLogout}>
                 Выйти
               </button>

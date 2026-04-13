@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadData } from "../features/data/dataSlice";
+import ProductInteractions from "../components/ProductInteractions";
 import "./ProductsPage.css";
 
 export default function ProductsPage() {
@@ -37,7 +38,6 @@ export default function ProductsPage() {
 
   return (
     <div>
-      {/* КАТАЛОГ */}
       <section className="section" id="products">
         <div className="container">
           <h2 className="h2">Каталог</h2>
@@ -49,9 +49,7 @@ export default function ProductsPage() {
                     src={p.image}
                     alt={p.name}
                     className="product-card__img"
-                    onError={(e) => {
-                      e.target.style.display = "none";
-                    }}
+                    onError={(e) => { e.target.style.display = "none"; }}
                   />
                   {!p.inStock && (
                     <span className="product-card__badge">Нет в наличии</span>
@@ -63,9 +61,7 @@ export default function ProductsPage() {
                   <div className="product-card__desc muted">{p.desc}</div>
 
                   <div className="product-card__meta">
-                    <span className="product-card__rating">
-                      ★ {p.rating}
-                    </span>
+                    <span className="product-card__rating">★ {p.rating}</span>
                     <span className={`product-card__stock ${p.inStock ? "in" : "out"}`}>
                       {p.inStock ? "В наличии" : "Нет в наличии"}
                     </span>
@@ -88,7 +84,6 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* DETAIL */}
       {selectedProduct && (
         <section className="section">
           <div className="container">
@@ -119,13 +114,17 @@ export default function ProductsPage() {
                 </div>
 
                 <div className="detail__benefits">
-                  <div className="muted" style={{ marginBottom: 6 }}>Преимущества:</div>
+                  <div className="muted" style={{ marginBottom: 6 }}>
+                    Преимущества:
+                  </div>
                   <ul>
                     {selectedProduct.details?.benefits?.map((b) => (
                       <li key={b}>✔ {b}</li>
                     ))}
                   </ul>
                 </div>
+
+                <ProductInteractions productId={selectedProduct.id} />
 
                 <div className="detail__actions">
                   <button

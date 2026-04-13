@@ -1,0 +1,114 @@
+.pi {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pi__row {
+  display: flex;
+  gap: 10px;
+}
+
+.pi__btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.pi__btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.pi__btn--liked {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.pi__btn--liked:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.pi__btn--fav {
+  border-color: #f59e0b;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.pi__btn--fav:hover {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.pi__rating-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pi__rating-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pi__stars {
+  display: flex;
+  gap: 4px;
+}
+
+.pi__star {
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--border);
+  transition: 0.15s;
+  padding: 0;
+  line-height: 1;
+}
+
+.pi__star--on {
+  color: #f59e0b;
+}
+
+.pi__star:hover {
+  transform: scale(1.2);
+}
+
+.pi__avg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.pi__avg-val {
+  font-size: 18px;
+  font-weight: 900;
+  color: #f59e0b;
+}
+
+.pi__avg-count {
+  font-size: 12px;
+  color: var(--muted);
+}
